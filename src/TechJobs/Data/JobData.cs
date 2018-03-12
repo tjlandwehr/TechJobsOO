@@ -41,15 +41,22 @@ namespace TechJobs.Data
          */
         public List<Job> FindByValue(string value)
         {
-            var results = from j in Jobs
-                          where j.Employer.Contains(value)
-                          || j.Location.Contains(value)
-                          || j.Name.ToLower().Contains(value.ToLower())
-                          || j.CoreCompetency.Contains(value)
-                          || j.PositionType.Contains(value)
-                          select j;
+            if (value == null)
+            {
+                return Jobs;
+            }
+            else
+            {
+                var results = from j in Jobs
+                              where j.Employer.Contains(value)
+                              || j.Location.Contains(value)
+                              || j.Name.ToLower().Contains(value.ToLower())
+                              || j.CoreCompetency.Contains(value)
+                              || j.PositionType.Contains(value)
+                              select j;
 
-            return results.ToList();
+                return results.ToList();
+            }
         }
 
 
